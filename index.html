@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Website for [Nama Dia]</title>
+    <link rel="stylesheet" href="./dist/output.css">
+</head>
+<body>
+    <main class="w-full flex justify-center items-center">
+        <section class="w-full flex justify-center items-center">
+            <div class="w-full h-screen flex flex-col justify-center items-center gap-4">
+                <h1 class="text-4xl font-bold text-pink-500">Happy Valentine's Day, [Nama Dia]!</h1>
+                <p class="text-lg text-gray-700">You are the most special person in my life. I love you so much!</p>
+                <div class="w-full gap-6 flex justify-center items-center">
+                    <a id="acc" href="accepted.html" class="px-4 py-2 bg-pink-500 text-white rounded hover:bg-pink-600 transition cursor-pointer">Accept</a>
+                    <button id="den" onclick="denied()" class="px-4 py-2 bg-pink-500 text-white rounded hover:bg-pink-600 transition cursor-pointer">Deny</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const acceptButton = document.getElementById('acc');
+        const denyButton = document.getElementById('den');
+        let textSize = 1;
+        
+        function accepted() {
+            alert('You accepted the proposal!');
+        };
+
+        function moveDenyButton() {
+            // Hitung batas layar supaya tombol gak lari ke luar jendela
+            const maxX = window.innerWidth - denyButton.offsetWidth;
+            const maxY = window.innerHeight - denyButton.offsetHeight;
+
+            // Generate posisi random
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            denyButton.style.left = `${randomX}px`;
+            denyButton.style.top = `${randomY}px`;
+        }
+        
+        function denied() {
+            textSize += 1;
+            acceptButton.style.fontSize = `${textSize}rem`;
+            denyButton.classList.add('absolute');
+
+            moveDenyButton();
+        }
+    </script>
+</body>
+</html>
